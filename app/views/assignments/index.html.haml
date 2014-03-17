@@ -22,6 +22,7 @@
                 %thead
                   %tr
                     %th.sortable{"data-sort" => "string"} Name
+                    // - if assignment_type.is_attendance?
                     - if assignment_type.name == "Class Attendance"
                       %th Attendance Rate
                     %th.sortable{"data-sort" => "date"} Due
@@ -34,6 +35,7 @@
                       // If an attendance assignment has past and students could earn points for the class,
                       // display visual of attendance percentage. Otherwise display empty space.
                       %td
+                        // - if assignment.assignment_type.is_attendance? && assignment.past? && assignment
                         - if assignment.assignment_type.name == "Class Attendance" && assignment.past? && assignment.point_total != 0
                           // Provide mouseover with actual attendance percentage.
                           %span.has-tip.tip-top{:title => "#{assignment.attendance_rate_int(current_course)}%", :data => {'tooltip' => true}}

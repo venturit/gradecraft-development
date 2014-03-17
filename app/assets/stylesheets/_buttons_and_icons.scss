@@ -27,6 +27,10 @@ i.fi-male.partial {
   color: $secondary-color;
 }
 
+/* High Score visuals */
+i.fi-star.highest{
+  color: $alert-color;
+}
 
 /* Option dropdowns for small screens */
 .button.tiny.dropdown {

@@ -8,6 +8,9 @@
   %table.responsive.small-12.columns
     %thead
       %tr
+        // - if @assignment.assignment_type.has_winners?
+        - if @assignment.assignment_type.name == "Reading Reactions"
+          %th
         %th First Name
         %th Last Name
         - if ! @assignment.assignment_type.student_weightable?
@@ -36,6 +39,13 @@
       - students.each do |student|
         - grade = current_course_data.grade_for_student_and_assignment(student, @assignment)
         %tr
+          // Add a column to show visualization for winners in a competitive assignment.
+          // if @assignment.assignment_type.has_winners? && grade.status?
+          // Remove particular code below if functionality has_winner? exists.
+          - if @assignment.assignment_type.name == "Reading Reactions" && grade.status?
+            %td
+              - if points grade.score == @assignment.point_total
+                %i.fi-star.highest
           %td= link_to student.first_name, student_path(student)
           %td= link_to student.last_name, student_path(student)
           %td{:data => { :"sort-value" => "#{grade.raw_score}"} }= points grade.raw_score if grade.status?

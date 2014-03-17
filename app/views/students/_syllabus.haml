@@ -37,6 +37,7 @@
                 %tr
                   // For the attendance assignment, add visualization in first column to display
                   // whether or not the student attended the class.
+                  // - if assignment.assignment_type.is_attendance?
                   - if assignment.assignment_type.name == "Attendance"
                     %td
                       - if assignment.past? && current_student_data.grade_for_assignment(assignment).is_graded?
