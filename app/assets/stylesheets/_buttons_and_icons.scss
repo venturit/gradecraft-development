@@ -48,6 +48,21 @@ i.fi-male.partial {
   color: $secondary-color;
 }
 
+/* AssignmentType winner visuals */
+i.fi-trophy.first {
+  font-size: 150%;
+  color: $alert-color;
+}
+
+i.fi-trophy.second {
+  font-size: 150%;
+  color: $primary-color;
+}
+
+i.fi-trophy.third {
+  font-size: 150%;
+  color: $secondary-color;
+}
 
 /* Option dropdowns for small screens */
 .button.tiny.dropdown {

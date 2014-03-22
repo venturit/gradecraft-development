@@ -8,6 +8,8 @@
   %table.responsive.small-12.columns
     %thead
       %tr
+        - if @assignment.assignment_type.has_winners?
+          %th
         %th First Name
         %th Last Name
         - if ! @assignment.assignment_type.student_weightable?
@@ -36,6 +38,10 @@
       - students.each do |student|
         - grade = current_course_data.grade_for_student_and_assignment(student, @assignment)
         %tr
+          - if @assignment.assignment_type.has_winners?
+            %td
+              - if grade.status? && (points grade.score == @assignment.point_total)
+                %i.fi-trophy.first
           %td= link_to student.first_name, student_path(student)
           %td= link_to student.last_name, student_path(student)
           %td{:data => { :"sort-value" => "#{grade.raw_score}"} }= points grade.raw_score if grade.status?

@@ -35,6 +35,12 @@
           = f.check_box :due_date_present
           .form_label Will #{term_for :assignments} in this category have due dates?
 
+      .small-12
+        %label.checkbox{ :for => "has_winners" }
+          = f.label :has_winners, "Has winners?"
+          = f.check_box :has_winners
+          .form_label Does this assignment have winner(s)?
+
     .small-12.large-4.columns
       .small-12
         / Assignment Type name, this will appear as the category heading for both students and staff
@@ -124,6 +130,20 @@
           = f.simple_fields_for :score_levels, score_level, class: 'form-inline' do |slf|
             = render 'score_level_fields', f: slf
     = link_to 'Add a Level', '#', class: 'add-level button tiny radius'
+
+    .clearfix
+    %br
+    .clearfix
+
+  // Allows the user to select the number of winners for competitive assignment types.
+  // - if @assignment_type.has_winners? 
+  .panel
+    %h4.bold Competitive Assignments
+    .small-12.large-4.columns
+      = f.label :num_winner_levels, "Number of Winner Levels"
+      = f.select :num_winner_levels, [[0],[1],[2],[3]]
+      .form_label For competitive assignments, how many winner levels (or places) would you like?
+    .clearfix
 
   .right
     = f.button :submit, "#{@assignment_type.persisted? ? 'Update' : 'Create'} #{term_for :assignment_type}", :class => "button radius tiny"
